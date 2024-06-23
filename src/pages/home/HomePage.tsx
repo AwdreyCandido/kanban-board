@@ -1,11 +1,11 @@
-import Card from "../../components/card/Card"
+import DragAndDrop from "../../components/drag-and-drop/DragAndDrop";
 
 const HomePage = () => {
   return (
-    <div>
-        <Card/>
+    <div className="flex gap-8">
+      <DragAndDrop />
     </div>
-  )
-}
+  );
+};
 
-export default HomePage
+export default HomePage;
