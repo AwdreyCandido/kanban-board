@@ -22,6 +22,7 @@ export default {
         80: "#000000cc",
         100: "#000000",
       },
+      dark: "#303030"
     },
     fontFamily: {
       sora: "Sora, sans-serif",

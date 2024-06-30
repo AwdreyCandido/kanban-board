@@ -1,8 +1,12 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import CardsContainer from "../cards-container/CardsContainer";
 import { data, status } from "../utils/data";
+import CardModal from "../card-modal/CardModal";
+import { TasksContext } from "../../context/TasksContext";
 
 const DragAndDrop = () => {
+  const { showModal } = useContext(TasksContext);
+
   const [isDragging, setIsDragging] = useState(false);
   const [listItems, setListItems] = useState<Card[]>(data);
 
@@ -32,6 +36,7 @@ const DragAndDrop = () => {
           />
         );
       })}
+      {showModal && <CardModal />}
     </div>
   );
 };

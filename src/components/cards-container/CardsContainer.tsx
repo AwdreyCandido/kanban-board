@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import Card from "../card/Card";
+import { HiPlus } from "react-icons/hi2";
+import { TasksContext } from "../../context/TasksContext";
 
 type Props = {
   status: string;
@@ -16,6 +18,8 @@ const CardsContainer: React.FC<Props> = ({
   handleDragging,
   handleUpdateList,
 }) => {
+  const { showAddModal } = useContext(TasksContext);
+
   const handleDragStart = function (
     this: number,
     event: React.DragEvent<HTMLDivElement>
@@ -51,12 +55,22 @@ const CardsContainer: React.FC<Props> = ({
 
   return (
     <div
-      className="flex flex-col min-w-[28rem] select-none"
+      className="flex flex-col min-w-[28rem] select-none text-dark"
       onDragOver={handlerDragOver}
       onDrop={handleDrop}
     >
       <div className="mb-4">
-        <h3 className="font-sora text-[1.6rem] font-bold mb-2">{containerTitle}</h3>
+        <div className="flex items-center justify-between mb-3">
+          <h3 className="font-sora text-[1.6rem] font-bold ">
+            {containerTitle}
+          </h3>
+          <div
+            onClick={showAddModal}
+            className="bg-white cursor-pointer h-[2.8rem] w-[2.8rem] flex items-center justify-center  text-[1.6rem] rounded-full shadow-md transition-all duration-300 hover:shadow-none"
+          >
+            <HiPlus className="stroke-[0.8] text-[#666666]" />
+          </div>
+        </div>
         <div className={`border-b-[3px] ${borderStyle}`}></div>
       </div>
       <section className="h-[80vh] max-h-[80vh] overflow-y-auto rounded-xl pb-4">

@@ -1,4 +1,6 @@
+import { useContext } from "react";
 import styles from "./Card.module.css";
+import { TasksContext } from "../../context/TasksContext";
 
 type Props = {
   info: Card;
@@ -23,12 +25,15 @@ const Card: React.FC<Props> = ({
       ? "border-warning"
       : "border-success";
 
+  const { showUpdateModal } = useContext(TasksContext);
+
   return (
     <div
       draggable
+      onClick={() => showUpdateModal(info.id)}
       onDragStart={handleDragStart.bind(info.id)}
       onDragEnd={handleDragEnd}
-      className={`bg-white w-full min-h-min max-w-[28rem] flex flex-col mt-3 gap-4 py-3 px-6 rounded-2xl border-[1.5px] ${borderStyle} shadow-md hover:shadow-none transition-all duration-300 ${styles.grabbable}`}
+      className={`bg-white w-full min-h-min max-w-[28rem] flex flex-col mt-4 gap-4 py-3 px-6 rounded-2xl border-[1.5px] ${borderStyle} shadow-md hover:shadow-none transition-all duration-300 ${styles.grabbable}`}
     >
       <h3 className="font-medium font-sora text-[1.6rem] select-none">
         {info.content}
@@ -46,7 +51,9 @@ const Card: React.FC<Props> = ({
             </div>
           ))}
         </div>
-        <div className="min-h-[3rem] min-w-[3rem] max-h-[3rem] max-w-[3rem] rounded-full bg-danger"></div>
+        <div
+          className={`min-h-[3rem] min-w-[3rem] max-h-[3rem] max-w-[3rem] rounded-full border ${borderStyle}`}
+        ></div>
       </div>
     </div>
   );
